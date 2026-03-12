@@ -2,168 +2,111 @@
 
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
-<title>For Miuu ✨</title>
+<title>For Miuu</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
 <style>
 
 body{
 margin:0;
-height:100vh;
-background:radial-gradient(circle at bottom,#0d0d2b,#000);
-font-family:'Segoe UI',sans-serif;
 overflow:hidden;
+font-family:'Poppins',sans-serif;
+background:black;
 color:white;
-display:flex;
-align-items:center;
-justify-content:center;
 }
 
-/* animated stars */
+/* intro */
 
-.stars{
+.intro{
 position:absolute;
 width:100%;
 height:100%;
-background:url("https://www.transparenttextures.com/patterns/stardust.png");
-animation:starsMove 60s linear infinite;
-opacity:0.6;
+display:flex;
+align-items:center;
+justify-content:center;
+font-family:'Orbitron';
+font-size:55px;
+letter-spacing:5px;
+background:black;
+animation:introFade 4s forwards;
+z-index:5;
 }
 
-@keyframes starsMove{
-from{background-position:0 0;}
-to{background-position:2000px 2000px;}
+@keyframes introFade{
+0%{opacity:1}
+100%{opacity:0;visibility:hidden}
 }
 
-/* main card */
+/* content */
 
-.card{
-position:relative;
-background:rgba(0,0,0,0.55);
-padding:60px;
-border-radius:25px;
+.content{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
 text-align:center;
-backdrop-filter:blur(15px);
-box-shadow:0 0 60px rgba(255,0,120,0.35);
-z-index:10;
-max-width:500px;
+z-index:2;
 }
 
 /* title */
 
 .title{
-font-size:42px;
-background:linear-gradient(45deg,#ff4b7d,#ff9a9e);
+font-family:'Orbitron';
+font-size:48px;
+background:linear-gradient(45deg,#ff4b7d,#7b5cff);
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
-text-shadow:0 0 15px rgba(255,75,125,0.6);
-margin-bottom:25px;
 }
 
-/* typing text */
+/* text */
 
-#typing{
+.msg{
+margin-top:20px;
 font-size:18px;
-line-height:1.6;
-min-height:70px;
 opacity:0.9;
+line-height:1.6;
 }
 
 /* button */
 
 button{
 margin-top:25px;
-padding:12px 28px;
+padding:12px 30px;
 border:none;
+border-radius:30px;
 background:linear-gradient(45deg,#ff4b7d,#ff0055);
 color:white;
-border-radius:30px;
 font-size:16px;
 cursor:pointer;
 transition:0.3s;
-box-shadow:0 0 15px rgba(255,0,100,0.5);
 }
 
 button:hover{
 transform:scale(1.1);
 }
 
-/* glowing MIUU */
+/* MIUU */
 
 .miuu{
 position:absolute;
 bottom:40px;
-font-size:48px;
-font-weight:600;
+left:50%;
+transform:translateX(-50%);
+font-family:'Orbitron';
+font-size:42px;
+letter-spacing:12px;
 color:#ff4b7d;
-text-shadow:0 0 20px #ff4b7d,0 0 40px #ff4b7d;
-animation:pulse 2s infinite;
+text-shadow:0 0 20px #ff4b7d;
 }
 
-@keyframes pulse{
-0%{transform:scale(1)}
-50%{transform:scale(1.15)}
-100%{transform:scale(1)}
-}
-
-/* floating hearts */
-
-.heart{
+canvas{
 position:absolute;
-color:#ff4b7d;
-font-size:20px;
-animation:floatUp 7s linear infinite;
-}
-
-@keyframes floatUp{
-0%{transform:translateY(0);opacity:1}
-100%{transform:translateY(-110vh);opacity:0}
-}
-
-/* rose petals */
-
-.rose{
-position:absolute;
-font-size:24px;
-animation:fallDown 9s linear infinite;
-}
-
-@keyframes fallDown{
-0%{transform:translateY(-40px) rotate(0deg)}
-100%{transform:translateY(110vh) rotate(360deg)}
-}
-
-/* 3D heart */
-
-.heart3d{
-position:absolute;
-top:60px;
-width:80px;
-height:80px;
-background:#ff2e63;
-transform:rotate(-45deg);
-animation:beat 1s infinite;
-box-shadow:0 0 25px #ff2e63;
-}
-
-.heart3d:before,
-.heart3d:after{
-content:"";
-position:absolute;
-width:80px;
-height:80px;
-background:#ff2e63;
-border-radius:50%;
-}
-
-.heart3d:before{top:-40px;}
-.heart3d:after{left:40px;}
-
-@keyframes beat{
-0%{transform:scale(1) rotate(-45deg)}
-50%{transform:scale(1.2) rotate(-45deg)}
-100%{transform:scale(1) rotate(-45deg)}
+top:0;
+left:0;
 }
 
 </style>
@@ -172,97 +115,138 @@ border-radius:50%;
 
 <body>
 
-<div class="stars"></div>
+<div class="intro">
+HELLO MIUU ✨
+</div>
 
-<div class="card">
+<div class="content">
 
-<div class="title">Hey Miuu ✨</div>
+<div class="title">A Little Cosmic Message</div>
 
-<p id="typing"></p>
+<div class="msg" id="typing"></div>
 
-<button onclick="showMessage()">Click for a small surprise 💌</button>
+<button onclick="openMessage()">Open Message 💌</button>
 
-<p id="message"></p>
+<div class="msg" id="message"></div>
 
 </div>
 
-<div class="heart3d"></div>
-
-<div class="miuu">MIUU ✨</div>
+<div class="miuu">M I U U</div>
 
 <script>
 
 /* typing */
 
-const text="Hi Miuu, I just made this little page for fun. Hope it brings a small smile to your day ✨";
+const text="Hi Miuu, I made this small cosmic page while learning some creative coding. Just thought it might bring a little smile to your day ✨";
 
 let i=0;
 
 function typing(){
+
 if(i<text.length){
 document.getElementById("typing").innerHTML+=text.charAt(i);
 i++;
-setTimeout(typing,45);
+setTimeout(typing,40);
 }
+
 }
 
 typing();
 
 /* message */
 
-function showMessage(){
+function openMessage(){
 
 document.getElementById("message").innerHTML=
-"English: Hope you have a beautiful day today ✨ <br><br> Español: Espero que hoy tengas un día muy bonito 💫";
+"English: Hope your day is going well and something nice happens today ✨ <br><br> Español: Espero que tengas un día bonito y que algo bueno te haga sonreír 💫";
 
 }
 
-/* floating hearts */
+/* Three.js galaxy */
 
-setInterval(()=>{
+const scene=new THREE.Scene();
 
-let heart=document.createElement("div");
-heart.className="heart";
-heart.innerHTML="💖";
-heart.style.left=Math.random()*100+"vw";
+const camera=new THREE.PerspectiveCamera(
+75,
+window.innerWidth/window.innerHeight,
+0.1,
+1000
+);
 
-document.body.appendChild(heart);
+const renderer=new THREE.WebGLRenderer({alpha:true});
 
-setTimeout(()=>heart.remove(),7000);
+renderer.setSize(window.innerWidth,window.innerHeight);
 
-},400);
+document.body.appendChild(renderer.domElement);
 
-/* rose petals */
+camera.position.z=5;
 
-setInterval(()=>{
+const starGeometry=new THREE.BufferGeometry();
 
-let rose=document.createElement("div");
-rose.className="rose";
-rose.innerHTML="🌸";
-rose.style.left=Math.random()*100+"vw";
+const starCount=2500;
 
-document.body.appendChild(rose);
+const positions=new Float32Array(starCount*3);
 
-setTimeout(()=>rose.remove(),9000);
+for(let i=0;i<starCount*3;i++){
 
-},900);
+positions[i]=(Math.random()-0.5)*700;
 
-/* mouse sparkle */
+}
 
-document.addEventListener("mousemove",e=>{
+starGeometry.setAttribute(
+'position',
+new THREE.BufferAttribute(positions,3)
+);
 
-let sparkle=document.createElement("div");
-
-sparkle.innerHTML="✨";
-sparkle.style.position="absolute";
-sparkle.style.left=e.pageX+"px";
-sparkle.style.top=e.pageY+"px";
-
-document.body.appendChild(sparkle);
-
-setTimeout(()=>sparkle.remove(),800);
-
+const starMaterial=new THREE.PointsMaterial({
+color:0xffffff,
+size:0.8
 });
+
+const stars=new THREE.Points(starGeometry,starMaterial);
+
+scene.add(stars);
+
+function animate(){
+
+requestAnimationFrame(animate);
+
+stars.rotation.y+=0.0005;
+
+renderer.render(scene,camera);
+
+}
+
+animate();
+
+/* meteor shower */
+
+setInterval(()=>{
+
+let meteor=document.createElement("div");
+
+meteor.innerHTML="🌠";
+
+meteor.style.position="absolute";
+meteor.style.left=Math.random()*window.innerWidth+"px";
+meteor.style.top="0px";
+meteor.style.fontSize="24px";
+
+document.body.appendChild(meteor);
+
+let fall=setInterval(()=>{
+
+meteor.style.top=parseInt(meteor.style.top)+10+"px";
+meteor.style.left=parseInt(meteor.style.left)+5+"px";
+
+},30)
+
+setTimeout(()=>{
+clearInterval(fall)
+meteor.remove()
+},2000)
+
+},3000);
 
 </script>
 

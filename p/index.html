@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<title>For Miuu ❤️</title>
+
+<style>
+
+body{
+margin:0;
+padding:0;
+height:100vh;
+background:radial-gradient(circle at bottom,#0d0d2b,#000);
+font-family: 'Segoe UI', sans-serif;
+overflow:hidden;
+color:white;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+/* stars */
+
+.stars{
+position:absolute;
+width:100%;
+height:100%;
+background:url("https://www.transparenttextures.com/patterns/stardust.png");
+animation:moveStars 40s linear infinite;
+opacity:0.7;
+}
+
+@keyframes moveStars{
+from{background-position:0 0;}
+to{background-position:1000px 1000px;}
+}
+
+/* card */
+
+.card{
+position:relative;
+background:rgba(0,0,0,0.6);
+padding:50px;
+border-radius:20px;
+text-align:center;
+backdrop-filter:blur(10px);
+box-shadow:0 0 40px rgba(255,0,100,0.4);
+z-index:10;
+}
+
+/* title */
+
+.title{
+font-size:40px;
+color:#ff4b7d;
+text-shadow:0 0 15px #ff4b7d;
+margin-bottom:20px;
+}
+
+/* typing */
+
+#typing{
+font-size:18px;
+min-height:60px;
+}
+
+/* button */
+
+button{
+margin-top:20px;
+padding:12px 25px;
+border:none;
+background:#ff4b7d;
+color:white;
+border-radius:8px;
+font-size:16px;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.1);
+background:#ff0055;
+}
+
+/* glowing name */
+
+.miuu{
+position:absolute;
+bottom:30px;
+font-size:45px;
+color:#ff4b7d;
+text-shadow:0 0 20px #ff4b7d;
+animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+0%{transform:scale(1)}
+50%{transform:scale(1.2)}
+100%{transform:scale(1)}
+}
+
+/* floating hearts */
+
+.heart{
+position:absolute;
+color:red;
+font-size:20px;
+animation:float 6s linear infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(0);opacity:1}
+100%{transform:translateY(-100vh);opacity:0}
+}
+
+/* rose petals */
+
+.rose{
+position:absolute;
+font-size:22px;
+animation:fall 8s linear infinite;
+}
+
+@keyframes fall{
+0%{transform:translateY(-50px)}
+100%{transform:translateY(100vh)}
+}
+
+/* 3D heart */
+
+.heart3d{
+position:absolute;
+top:50px;
+width:70px;
+height:70px;
+background:red;
+transform:rotate(-45deg);
+animation:beat 1s infinite;
+}
+
+.heart3d:before,
+.heart3d:after{
+content:"";
+position:absolute;
+width:70px;
+height:70px;
+background:red;
+border-radius:50%;
+}
+
+.heart3d:before{top:-35px;}
+.heart3d:after{left:35px;}
+
+@keyframes beat{
+0%{transform:scale(1) rotate(-45deg)}
+50%{transform:scale(1.2) rotate(-45deg)}
+100%{transform:scale(1) rotate(-45deg)}
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="stars"></div>
+
+<div class="card">
+
+<div class="title">Hey Miuu ❤️</div>
+
+<p id="typing"></p>
+
+<button onclick="showMessage()">Open Surprise 💌</button>
+
+<p id="message"></p>
+
+</div>
+
+<div class="heart3d"></div>
+
+<div class="miuu">M ❤️ I ❤️ U ❤️ U</div>
+
+<script>
+
+/* typing */
+
+const text =
+"Miuu, I made this page just for you. You are someone really special to me ❤️";
+
+let i=0;
+
+function typing(){
+
+if(i<text.length){
+document.getElementById("typing").innerHTML+=text.charAt(i);
+i++;
+setTimeout(typing,50);
+}
+
+}
+
+typing();
+
+/* message */
+
+function showMessage(){
+
+document.getElementById("message").innerHTML=
+"English: You make the world brighter just by being in it ✨ <br><br> Español: Miuu, haces el mundo más hermoso con tu sonrisa 💖";
+
+}
+
+/* floating hearts */
+
+setInterval(()=>{
+
+let heart=document.createElement("div");
+heart.className="heart";
+heart.innerHTML="❤️";
+
+heart.style.left=Math.random()*100+"vw";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>heart.remove(),6000);
+
+},300);
+
+/* rose petals */
+
+setInterval(()=>{
+
+let rose=document.createElement("div");
+rose.className="rose";
+rose.innerHTML="🌹";
+
+rose.style.left=Math.random()*100+"vw";
+
+document.body.appendChild(rose);
+
+setTimeout(()=>rose.remove(),8000);
+
+},800);
+
+/* mouse hearts */
+
+document.addEventListener("mousemove",e=>{
+
+let heart=document.createElement("div");
+heart.className="heart";
+heart.innerHTML="💖";
+
+heart.style.left=e.pageX+"px";
+heart.style.top=e.pageY+"px";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>heart.remove(),1000);
+
+});
+
+</script>
+
+</body>
+</html>
